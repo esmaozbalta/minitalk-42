@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: esozbalt <esozbalt@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/30 18:59:40 by esozbalt          #+#    #+#             */
+/*   Updated: 2024/07/01 20:46:46 by esozbalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 static	void	write_pid(pid_t	n)
@@ -16,35 +28,34 @@ static	void	write_pid(pid_t	n)
 	}
 }
 
-static	void	control_signal(int	signal)
+static void	control_signal(int signal)
 {
-	static	char	c;
-	static	int		i;
+	static char	c;
+	static int	i;
 
 	i++;
 	if (signal == SIGUSR1)
-		c = c | 1; //karaktere 1 bit ekle
-	if (i == 8) //8 bitin hepsi aktarildiysa
+		c = c | 1;
+	if (i == 8)
 	{
-		write(1, &c, 1); //ekrana yazdir
-		i = 0; //bit i sifirla
-		c = 0; //karakteri sifirla
+		write (1, &c, 1);
+		i = 0;
+		c = 0;
 	}
-	c = c << 1; //bit i sola kaydirir
+	c = c << 1;
 }
 
 int	main(void)
 {
 	pid_t	server_pid;
 
-	server_pid = getpid(); //pid degerini ata
-	write_pid(server_pid); //pid degerini ekrana yazdir
+	server_pid = getpid();
+	write_pid(server_pid);
 	write(1, "\n", 1);
-	signal(SIGUSR1, control_signal);//Program SIGUSR1 sinyalini aldığında, control_signal fonksiyonu otomatik olarak çalıştırılır.
+	signal(SIGUSR1, control_signal);
 	signal(SIGUSR2, control_signal);
-	while(1)
+	while (1)
 	{
-		write(1, "sinyal\n", 7);
 		pause();
 	}
 	return (0);

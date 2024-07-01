@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: esozbalt <esozbalt@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/01 15:43:35 by esozbalt          #+#    #+#             */
+/*   Updated: 2024/07/01 15:43:47 by esozbalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINITALK_H
 # define MINITALK_H
 
-#include <signal.h>
-#include <unistd.h>
+# include <signal.h>
+# include <unistd.h>
 
 #endif
